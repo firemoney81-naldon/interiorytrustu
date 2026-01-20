@@ -1,23 +1,663 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "38평 인테리어 서비스",
+      "serviceType": "아파트 인테리어 리모델링",
+      "provider": {
+        "@type": "Organization",
+        "name": "프리미엄 인테리어 디자인 그룹",
+        "url": "https://yourdomain.com",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+82-10-1234-5678",
+          "contactType": "고객 서비스"
+        }
+      },
+      "areaServed": [
+        { "@type": "State", "name": "서울시" },
+        { "@type": "State", "name": "경기도" },
+        { "@type": "State", "name": "인천시" }
+      ],
+      "description": "38평 아파트 인테리어 전문. 2026년 트렌드를 반영한 맞춤 디자인과 합리적인 비용 견적을 제공합니다. 구축 아파트 리모델링, 부분 인테리어 전문.",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "인테리어 서비스 상품",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "38평 전체 리모델링"
+            },
+            "priceSpecification": {
+                "@type": "UnitPriceSpecification",
+                "price": "50000000",
+                "priceCurrency": "KRW",
+                "unitText": "최저가"
+            },
+            "description": "구축 38평 아파트 전체를 철거부터 마감까지 진행하는 풀 리모델링 서비스. 단열 보강 및 구조 변경 포함."
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "38평 주방/욕실 리모델링"
+            },
+            "priceSpecification": {
+                "@type": "UnitPriceSpecification",
+                "price": "15000000",
+                "priceCurrency": "KRW",
+                "unitText": "최저가"
+            },
+            "description": "부분 인테리어 중에서도 핵심 공간인 주방과 욕실을 집중적으로 개선하는 서비스."
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "38평 스타일링 및 가성비 시공"
+            },
+            "priceSpecification": {
+                "@type": "UnitPriceSpecification",
+                "price": "8000000",
+                "priceCurrency": "KRW",
+                "unitText": "최저가"
+            },
+            "description": "도배, 장판, 조명 등 필수적인 마감재 교체와 홈 스타일링을 통한 가성비 인테리어."
+          }
+        ]
+      }
+    }
+    </script>
+
+    <style>
+      /* Google Fonts Noto Sans KR */
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+
+      /* Basic Styling Reset and Typography */
+      body {
+        font-family: 'Noto Sans KR', sans-serif;
+        margin: 0;
+        padding: 0;
+        line-height: 1.8;
+        background-color: #fcfcfc; /* Light cream background */
+        color: #333;
+        font-size: 16px;
+      }
+      a {
+        text-decoration: none;
+        color: #007bff; /* Soft blue for links */
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      /* Layout Container */
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 1rem;
+        box-sizing: border-box;
+      }
+
+      /* Header and Navigation */
+      header {
+        background-color: #F8F5EE; /* Soft beige/cream header */
+        color: #333;
+        padding: 1.5rem 0;
+        border-bottom: 1px solid #eee;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      }
+      header h1 {
+        font-size: 2.2rem;
+        color: #3A8D8D; /* Deep teal/green primary color */
+        text-align: center;
+        margin: 0;
+        font-weight: 700;
+      }
+      header h1 a {
+        color: #3A8D8D;
+      }
+      nav ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        gap: 2.5rem;
+        margin-top: 1rem;
+      }
+      nav a {
+        color: #555;
+        font-weight: 500;
+        font-size: 1.05rem;
+        transition: color 0.3s ease;
+        padding: 0.5rem 0;
+      }
+      nav a:hover {
+        color: #FF9900; /* Soft orange accent for hover */
+      }
+
+      /* Main Content Sections */
+      main {
+        padding-top: 2rem;
+      }
+      section {
+        margin-bottom: 3rem;
+        background-color: white;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+      }
+      section h2 {
+        font-size: 1.8rem;
+        color: #3A8D8D;
+        border-bottom: 2px solid #e0e0e0;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1.5rem;
+        font-weight: 700;
+      }
+      section h3 {
+        color: #4CAF50; /* Green accent for subheadings */
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin-top: 2rem;
+      }
+
+      /* Keyword Tags */
+      .keyword-tags {
+        margin: 1.5rem 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .keyword-tags a {
+        background-color: #e6f7ff; /* Light blue background */
+        color: #007bff;
+        padding: 8px 16px;
+        border-radius: 25px;
+        font-size: 0.9rem;
+        text-decoration: none;
+        transition: background-color 0.3s ease, transform 0.2s;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      }
+      .keyword-tags a:hover {
+        background-color: #cceeff;
+        transform: translateY(-2px);
+      }
+
+      /* Cost Table Styling */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 2rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      th, td {
+        padding: 1rem;
+        border: 1px solid #f0f0f0;
+        text-align: left;
+      }
+      th {
+        background-color: #3A8D8D;
+        color: white;
+        font-weight: 600;
+        text-align: center;
+      }
+      tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      /* Accordion Styling (FAQ) */
+      dl dt {
+        background-color: #f9f9f9;
+        color: #333;
+        font-weight: 600;
+        padding: 1rem;
+        border-radius: 8px;
+        margin-top: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        border-left: 4px solid #3A8D8D;
+      }
+      dl dt:hover {
+        background-color: #f1f1f1;
+      }
+      dl dt.active {
+        background-color: #e0f0ff;
+        border-color: #007bff;
+      }
+      dl dd {
+        margin-left: 1.5rem;
+        padding: 1rem 0;
+        border-bottom: 1px dashed #ddd;
+        display: none;
+        animation: fadein 0.3s;
+      }
+      dl dt.active + dd {
+        display: block;
+      }
+
+      /* Call to Action Button */
+      .cta-button {
+        display: block; /* Full width for better visibility */
+        background-color: #FF9900;
+        color: white;
+        font-weight: 700;
+        padding: 1.2rem 2.5rem;
+        border-radius: 50px;
+        text-decoration: none;
+        margin: 2rem auto;
+        transition: background-color 0.3s ease, transform 0.2s;
+        text-align: center;
+        width: 80%;
+        max-width: 400px;
+        font-size: 1.1rem;
+      }
+      .cta-button:hover {
+        background-color: #e68a00;
+        transform: scale(1.05);
+      }
+
+      /* Form Styling */
+      .form-group {
+        margin-bottom: 1rem;
+      }
+      .form-group label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: #555;
+      }
+      .form-group input, .form-group select, .form-group textarea {
+        width: calc(100% - 20px);
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        box-sizing: border-box;
+      }
+      .checkbox-group label {
+        font-weight: 400;
+        margin-right: 1rem;
+      }
+
+      /* Image and Media Styling */
+      .img-container {
+        text-align: center;
+        margin: 2rem 0;
+      }
+      .img-container img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Footer Styling */
+      footer {
+        text-align: center;
+        padding: 2rem;
+        font-size: 0.9rem;
+        color: #777;
+        background-color: #f0f0f0;
+        margin-top: 2rem;
+      }
+      footer ul {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 1rem;
+      }
+      footer li {
+        display: inline-block;
+        margin: 0 10px;
+      }
+      footer a {
+        color: #777;
+      }
+
+      /* Responsive Adjustments */
+      @media (max-width: 768px) {
+        header h1 {
+          font-size: 1.8rem;
+        }
+        nav ul {
+          gap: 1.5rem;
+        }
+        nav a {
+          font-size: 1rem;
+        }
+        main {
+          padding-top: 1rem;
+        }
+        section {
+          padding: 1.5rem;
+        }
+        .cta-button {
+          width: 90%;
+        }
+      }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><a href="/">38평 인테리어 | 2026년 트렌드와 비용 가이드</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="#intro">인테리어 개요</a></li>
+                    <li><a href="#trends">2026 트렌드</a></li>
+                    <li><a href="#service-type">서비스 종류</a></li>
+                    <li><a href="#cost">비용 견적 가이드</a></li>
+                    <li><a href="#faqs">자주 묻는 질문</a></li>
+                    <li><a href="#contact">상담 신청</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Section 1: Introduction -->
+        <section id="intro">
+            <h2>38평 인테리어의 중요성과 핵심 키워드</h2>
+            <p><strong>38평 인테리어</strong>는 30평대 후반 아파트나 주택에서 가장 많이 찾는 평형대입니다. 넉넉한 공간감을 활용하면서도 가족 구성원의 라이프스타일을 반영한 효율적인 공간 구획이 핵심입니다. 단순히 면적이 넓다고 좋은 것이 아니라, 이 공간을 어떻게 디자인하느냐에 따라 주거 만족도가 크게 달라집니다. 특히 <strong>38평 아파트 인테리어</strong>의 경우, 구축 아파트의 경우 단열 문제, 노후된 배관 및 샷시 교체가 필수로 여겨지며, 신축 아파트의 경우에도 가성비 높은 입주 인테리어로 공간의 개성을 더하는 것이 트렌드입니다. <strong>38평 인테리어 비용</strong>은 시공 범위와 자재에 따라 크게 달라지므로, 사전에 꼼꼼한 견적 비교가 중요합니다.</p>
+            <p>최근 <strong>2026년 인테리어 트렌드</strong>는 '웰빙'과 '개성'에 초점을 맞추고 있습니다. 단순히 예쁜 공간을 넘어, 건강한 소재와 지속 가능한 디자인을 선호하며, 나아가 나만의 취향을 반영한 맞춤형 공간을 추구하는 경향이 짙어졌습니다. <strong>38평 구축 아파트 인테리어</strong>를 계획하고 있다면, 이러한 트렌드를 반영하여 단순히 새롭게 꾸미는 것을 넘어, 삶의 질을 높이는 리모델링을 고려해야 합니다.</p>
+
+            <div class="keyword-tags" aria-label="연관 검색어">
+                <a href="#cost-guide">38평 인테리어 비용</a>
+                <a href="#service-type">38평 아파트 리모델링</a>
+                <a href="#trends">2026 인테리어 트렌드</a>
+                <a href="#reviews">38평 인테리어 후기</a>
+                <a href="#cost-guide">38평 인테리어 예상 금액</a>
+                <a href="#service-type">38평 구축 아파트 인테리어</a>
+                <a href="#trends">가성비 인테리어 시공</a>
+                <a href="#service-type">38평 주방 인테리어</a>
+                <a href="#service-type">38평 거실 인테리어</a>
+                <a href="#faqs">인테리어 견적 비교</a>
+                <a href="#cost-guide">38평 평당 인테리어 비용</a>
+                <a href="#cost-guide">38평 인테리어 저렴한곳</a>
+                <a href="#trends">38평 인테리어 장점 단점</a>
+                <a href="#trends">38평 인테리어 차이점</a>
+                <a href="#trends">38평 인테리어 추천</a>
+                <a href="#contact">38평 인테리어 문의</a>
+            </div>
+        </section>
+
+        <!-- Section 2: 2026 Trends -->
+        <section id="trends">
+            <h2>2026년 38평 아파트 인테리어 핵심 트렌드 분석</h2>
+            <p>2026년은 ‘지속 가능성’과 ‘개인화된 웰빙’이 인테리어의 핵심 키워드입니다. 38평과 같이 비교적 넓은 평수에서는 이러한 트렌드를 충분히 반영하여 공간의 가치를 극대화할 수 있습니다. 다음은 <strong>2026년 38평 인테리어</strong>에서 주목해야 할 주요 트렌드입니다.</p>
+
+            <h3>1. 자연 소재와 '뉴트럴 톤'의 조화</h3>
+            <p><strong>38평 인테리어</strong>는 자연스러운 마감재의 활용이 두드러집니다. 목재, 석재, 포세린 타일 등의 자연 소재를 활용하여 편안하고 따뜻한 공간을 연출합니다. 특히 <strong>뉴트럴 톤(베이지, 아이보리)</strong>은 공간의 안정감을 높여주며, 38평의 넉넉한 면적을 더욱 넓고 여유롭게 보이게 하는 효과가 있습니다. 자연 소재와 뉴트럴 톤의 조화는 <strong>부산 해운대</strong>나 <strong>서울 서초구</strong> 등 고급 주거지에서 선호하는 모던 럭셔리 스타일의 기반이 됩니다.</p>
+
+            <h3>2. 스마트 인테리어와 모듈형 가구 시스템</h3>
+            <p>기술의 발전과 함께 <strong>스마트 인테리어</strong>의 일상화가 가속화되고 있습니다. 38평 인테리어에서는 스마트 조명, 냉난방 제어 시스템, 빌트인 가전 등을 통합하여 효율적인 주거 환경을 구현합니다. 또한 <strong>모듈형 룸 시스템</strong>을 도입하여 가족 구성원의 변화에 따라 공간을 유연하게 활용할 수 있도록 합니다. 특히 <strong>38평 구축 아파트</strong>의 경우, 낡은 시설을 철거하고 스마트 시스템을 구축하면 주거 만족도를 크게 높일 수 있습니다.</p>
+
+            <h3>3. 거실의 기능 변화와 LDK 구조</h3>
+            <p>기존의 거실은 TV 중심의 공간이었다면, 이제는 가족 구성원 모두가 함께하는 다목적 공간으로 변화하고 있습니다. <strong>38평 아파트 인테리어</strong>에서는 <strong>주방(Kitchen)과 다이닝 공간(Dining)</strong>을 거실(Living)과 통합한 LDK(Living-Dining-Kitchen) 구조를 선호합니다. 이를 통해 38평의 공간감을 극대화하고, 주방을 단순히 조리 공간이 아닌 소통의 중심지로 만듭니다. <strong>38평 인테리어 후기</strong>를 보면, 주방-거실 통합이 가장 만족도가 높은 부분으로 꼽히는 경우가 많습니다.</p>
+
+            <h3>4. 곡선형 디자인과 유연한 동선</h3>
+            <p>딱딱한 직선 대신 곡선형 디자인이 인테리어에 도입되며 공간에 부드러움과 편안함을 더하고 있습니다. <strong>38평 인테리어</strong>에서는 곡선형 가구나 아치형 출입구, 라운드형 아일랜드 식탁 등을 활용하여 공간에 리듬감을 부여합니다. 이는 <strong>경기 분당</strong>이나 <strong>인천 송도</strong> 지역의 신축 아파트에서 특히 인기를 얻고 있습니다. 또한, 유연한 동선 설계는 <strong>38평 주택 인테리어</strong>의 단점인 동선 낭비를 줄여줍니다.</p>
+        </section>
+
+        <!-- Section 3: Service Types -->
+        <section id="service-type">
+            <h2>38평 인테리어 시공 서비스 종류 및 특징</h2>
+            <p>38평 인테리어는 시공 범위에 따라 크게 3가지로 나눌 수 있으며, 고객님의 예산(<strong>38평 인테리어 비용</strong>)과 목표에 맞춰 신중하게 선택해야 합니다. <strong>38평 인테리어 장점</strong>은 넓은 면적 덕분에 다양한 디자인을 시도할 수 있다는 점입니다. <strong>38평 인테리어 단점</strong>은 전체 리모델링 시 비용이 높고 공사 기간이 길어질 수 있다는 점입니다.</p>
+
+            <h3>1. 38평 전체 리모델링 (Full Remodeling)</h3>
+            <p><strong>38평 구축 아파트 인테리어</strong>의 정석입니다. 20년 이상 노후된 아파트라면 반드시 전체 리모델링을 고려해야 합니다. 샷시 교체, 단열 보강, 배관 공사 등 필수적인 설비 공사부터 거실 확장, 주방 구조 변경, 욕실 타일 공사까지 모든 부분을 새롭게 바꿉니다. <strong>38평 전체 인테리어 비용</strong>은 가장 높지만, 주거 환경을 근본적으로 개선할 수 있는 가장 확실한 방법입니다. 특히 <strong>서울 강남, 송파</strong> 지역의 구축 아파트에서 매매 후 입주 시 선호하는 방식입니다.</p>
+
+            <h3>2. 38평 부분 인테리어 (Partial Remodeling)</h3>
+            <p>신축 아파트의 입주 인테리어, 또는 노후화가 심하지 않은 <strong>38평 인테리어</strong>에 적합합니다. <strong>38평 부분 인테리어 비용</strong>은 전체 리모델링보다 현저히 저렴하며, 원하는 공간만 집중적으로 개선할 수 있습니다. 예를 들어, <strong>주방 인테리어</strong>와 <strong>욕실 인테리어</strong>는 투자 대비 만족도가 높아 가장 많이 선택하는 부분 리모델링 영역입니다. <strong>안방 인테리어</strong>와 <strong>자녀방 인테리어</strong>는 라이프스타일에 맞춰 가구와 조명만 교체하는 방식으로 진행하기도 합니다.</p>
+
+            <h3>3. 38평 가성비 인테리어 (Budget Remodeling)</h3>
+            <p>최소한의 <strong>38평 인테리어 비용</strong>으로 최대의 효과를 내는 방식입니다. 샷시나 배관 교체 없이 도배, 장판(마루), 조명, 필름 시공만 진행합니다. <strong>38평 인테리어 저렴한곳</strong>을 찾는 분들이나 전세 입주 인테리어를 계획하는 분들께 적합합니다. <strong>경기 수원, 용인</strong> 지역의 38평 아파트에서 많이 찾는 방식으로, 단기간에 분위기를 바꿀 수 있다는 <strong>장점</strong>이 있습니다.</p>
+        </section>
+
+        <!-- Section 4: Cost Guide and Calculator -->
+        <section id="cost">
+            <h2>38평 인테리어 비용 견적 가이드 (2026년 기준)</h2>
+            <p><strong>38평 인테리어 비용</strong>은 평당 비용으로 계산되며, 시공 범위와 자재 등급에 따라 <strong>평당 100만 원부터 250만 원 이상</strong>까지 폭넓게 형성됩니다. 2026년 현재 인건비 및 자재비 상승으로 인해 과거보다 <strong>평균 인테리어 금액</strong>이 높아지고 있습니다. <strong>38평 인테리어 예상 금액</strong>을 산출하기 위해서는 다음 표를 참고하시고, 정확한 <strong>이사견적</strong>은 반드시 전문가 방문 상담을 통해 받으셔야 합니다.</p>
+
+            <h3>38평 아파트 인테리어 예상 비용표 (2026년 기준)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>시공 범위</th>
+                        <th>평당 예상 비용</th>
+                        <th>총 예상 비용 (38평 기준)</th>
+                        <th>특징 및 참고 사항</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>가성비/부분 시공</strong> (도배, 장판, 조명)</td>
+                        <td>100만원 ~ 150만원</td>
+                        <td>3,800만원 ~ 5,700만원</td>
+                        <td>노후된 마감재 교체에 중점. 최소 비용으로 분위기 전환.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>표준 시공</strong> (부분 리모델링)</td>
+                        <td>150만원 ~ 200만원</td>
+                        <td>5,700만원 ~ 7,600만원</td>
+                        <td>주방, 욕실, 샷시 등 핵심 공간 집중 투자.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>고급/전체 시공</strong> (풀 리모델링)</td>
+                        <td>200만원 ~ 250만원 이상</td>
+                        <td>7,600만원 ~ 9,500만원 이상</td>
+                        <td>구축 아파트 단열, 배관 포함. 프리미엄 자재 및 맞춤 디자인 적용.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>[참고] 이사비용 산출 시 고려할 점:</strong> <strong>38평 구축 아파트</strong>의 경우 철거 및 단열 공사 비용이 추가되어 <strong>38평 인테리어 비용</strong>이 증가할 수 있습니다. <strong>38평 인테리어 저렴한곳</strong>을 찾는 경우, 자재의 등급을 낮추거나 <strong>반셀프 인테리어</strong>(직접 발품을 팔아 자재를 구매하고 일부 공정을 담당)를 고려하는 것도 좋은 방법입니다.</p>
+
+            <h3>인테리어 견적 비교를 위한 핵심 노하우</h3>
+            <p>여러 업체에 견적을 의뢰할 때, 단순히 총액만 비교하는 것은 <strong>인테리어 비용</strong> 산출에 있어 큰 오류를 범할 수 있습니다. 동일한 조건(자재 브랜드, 시공 범위)을 제시하고 항목별 세부 내역을 꼼꼼히 비교해야 합니다. <strong>38평 인테리어 후기</strong>를 참고하여 <strong>내돈내산</strong> 경험자의 조언을 듣는 것도 중요합니다.</p>
+
+            <div class="cost-calculator">
+                <h3>38평 인테리어 비용 간편 예상 계산기</h3>
+                <form id="calc-form">
+                    <div class="form-group">
+                        <label for="area">이사 평수:</label>
+                        <select id="area" name="area">
+                            <option value="38" selected>38평 (125m²)</option>
+                            <option value="25">25평 (82m²)</option>
+                            <option value="45">45평 (148m²)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>희망 시공 범위:</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="scope" value="basic" checked> 도배/장판 (필수)</label>
+                            <label><input type="checkbox" name="scope" value="kitchen"> 주방 리모델링 (싱크대, 타일)</label>
+                            <label><input type="checkbox" name="scope" value="bathroom"> 욕실 리모델링 (2개소)</label>
+                            <label><input type="checkbox" name="scope" value="door"> 문/문틀 교체</label>
+                            <label><input type="checkbox" name="scope" value="lighting"> 조명/전기 공사</label>
+                            <label><input type="checkbox" name="scope" value="window"> 샷시 전체 교체</label>
+                            <label><input type="checkbox" name="scope" value="extension"> 베란다 확장 및 단열</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="level">자재 등급:</label>
+                        <select id="level" name="level">
+                            <option value="standard">표준 (국산 브랜드)</option>
+                            <option value="premium">고급 (프리미엄 브랜드/수입)</option>
+                            <option value="economy">경제형 (실속형)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="note">추가 요청사항 (예: 38평 구축 아파트 단열 보강 필요):</label>
+                        <textarea id="note" name="note" rows="3" placeholder="구체적인 내용을 남겨주시면 정확한 견적 산출에 도움이 됩니다."></textarea>
+                    </div>
+                    <button type="button" class="cta-button" onclick="calculateEstimate()">예상 견적 확인하기</button>
+                    <div id="estimate-result" style="margin-top: 1.5rem; font-size: 1.2rem; font-weight: 700; color: #FF9900;"></div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Section 5: Regional Information -->
+        <section id="regional-info">
+            <h2>전국 지역별 38평 인테리어 특징 및 견적 차이 분석</h2>
+            <p><strong>38평 인테리어 비용</strong>은 지역별로 큰 차이를 보일 수 있습니다. 이는 인건비, 자재 운반비, 그리고 지역별 주택 특성(구축 vs 신축, 아파트 vs 주택)에 기인합니다. <strong>전국 이사 견적 비교</strong> 시 참고할 수 있도록 주요 지역별 특징을 정리했습니다.</p>
+            <h3>수도권 (서울, 경기, 인천) 38평 인테리어: 수요 집중 지역</h3>
+            <p>서울의 <strong>강남구, 서초구, 송파구, 용산구</strong> 등 고급 주거지역에서는 38평 인테리어 시 프리미엄 자재와 고급 마감재(포세린 타일, 대리석 등)를 선호하는 경향이 짙습니다. <strong>인테리어 비용</strong>은 평당 200만 원 이상을 예상해야 합니다. 반면 <strong>경기 수원, 용인, 평택, 시흥</strong> 지역은 가성비와 실용성을 중시하는 경향이 강하며, <strong>38평 인테리어 저렴한곳</strong>을 찾는 수요가 많습니다. <strong>인천 송도, 청라</strong>와 같은 신도시 지역에서는 신축 아파트 입주 인테리어 수요가 높습니다.</p>
+            <h3>지방 광역시 (부산, 대구, 대전, 광주) 38평 인테리어: 구축 아파트 리모델링 증가</h3>
+            <p><strong>부산 해운대, 센텀시티</strong> 지역은 서울 강남과 유사하게 고급 인테리어 수요가 높습니다. <strong>대구 수성구</strong>나 <strong>대전 둔산동</strong> 등 전통적인 주거 밀집 지역에서는 <strong>38평 구축 아파트 인테리어</strong>가 활발합니다. <strong>인테리어 비용</strong>은 수도권에 비해 상대적으로 낮을 수 있지만, 노후 아파트의 경우 단열 및 설비 공사에 예상치 못한 추가 비용이 발생할 수 있으므로 <strong>견적 비교</strong> 시 유의해야 합니다.</p>
+            <h3>특수 지역 (제주, 세종) 38평 인테리어: 특수성 고려</h3>
+            <p><strong>제주도</strong>는 육지에서 자재 운반비가 추가되어 <strong>인테리어 비용</strong>이 상대적으로 높을 수 있습니다. <strong>세종시</strong>는 신축 아파트 비중이 높아 <strong>입주 인테리어</strong>(가구, 조명, 필름 시공 등) 수요가 높습니다. <strong>인테리어 순위</strong>를 따지기보다는 지역 전문 업체와 충분한 상담을 통해 <strong>내돈내산</strong> 후기를 참고하는 것이 현명합니다.</p>
+        </section>
+
+        <!-- Section 6: In-depth planning guide (Long-form content for SEO) -->
+        <section id="planning-guide">
+            <h2>38평 인테리어 A to Z: 성공적인 리모델링을 위한 계획 수립</h2>
+            <p><strong>38평 인테리어</strong>를 성공적으로 마무리하기 위해서는 치밀한 사전 계획이 필수적입니다. 단순히 <strong>38평 인테리어 비용</strong>만 비교할 것이 아니라, 전체 공정의 흐름과 발생 가능한 변수를 미리 예측하고 대비해야 합니다. 다음은 <strong>38평 인테리어</strong> 진행 시 반드시 고려해야 할 핵심 요소들입니다.</p>
+
+            <h3>1. 38평 아파트 구조 분석: 장점 극대화 vs 단점 보완</h3>
+            <p>38평은 4~5인 가구가 살기에 충분한 공간이지만, 구축 아파트의 경우 주방과 거실이 분리되어 있거나 방이 많은 대신 공간감이 부족한 <strong>단점</strong>이 있습니다. <strong>38평 인테리어 장점</strong>을 살리려면, 넓은 거실 면적과 베란다 공간을 최대한 활용하는 것이 중요합니다. 최근 <strong>38평 인테리어 후기</strong>를 보면, 거실-주방 경계의 벽을 철거하여 LDK 구조로 변경하거나, 베란다를 확장하여 서재나 놀이방으로 활용하는 사례가 늘고 있습니다.</p>
+
+            <h3>2. 예산 책정: 가성비와 가심비의 균형</h3>
+            <p><strong>38평 인테리어 비용</strong>은 예산 책정 시 가장 중요한 부분입니다. 총 예산을 먼저 정하고, 필수 공사와 선택 공사를 구분하여 우선순위를 정해야 합니다. 예를 들어, 샷시 교체나 단열 보강은 <strong>구축 아파트 인테리어</strong>의 필수 공정으로, 이 부분을 포기하면 겨울철 난방비 폭탄이라는 <strong>단점</strong>을 감수해야 합니다. 반면, 주방 상부장 교체 대신 인테리어 필름 시공을 선택하는 등 가성비 높은 방법을 통해 <strong>인테리어 비용</strong>을 절감할 수 있습니다.</p>
+
+            <h3>3. 시공사 선정: 투명성과 신뢰도</h3>
+            <p><strong>38평 인테리어 저렴한곳</strong>만 찾다 보면 부실 시공의 위험에 노출될 수 있습니다. <strong>인테리어 견적 비교</strong> 시 중요한 것은 견적서의 투명성입니다. '일체' 또는 '잡비'와 같이 불분명한 항목은 피하고, 자재의 브랜드, 모델명, 수량이 명시된 상세 견적서를 요구해야 합니다. <strong>38평 인테리어 추천</strong> 업체는 <strong>내돈내산 후기</strong>가 많고, 하자 이행 보증서를 제공하는 곳을 선택하는 것이 안전합니다.</p>
+
+            <h3>4. 2026년 인테리어 트렌드 반영 (상세)</h3>
+            <p><strong>가. 컬러 트렌드:</strong> 2026년에는 '뉴트럴 톤'을 기본으로 하되, 따뜻한 흙색 계열(브라운, 올리브 그린)과 강렬한 포인트 컬러(플럼, 오렌지)를 섞어 개성을 표현하는 것이 유행할 것으로 예측됩니다. <strong>38평 인테리어</strong>에서는 넓은 면적에 뉴트럴 톤을 적용하고, 소파나 커튼 등 패브릭에 포인트 컬러를 활용하여 <strong>장점</strong>인 공간감을 살릴 수 있습니다.</p>
+            <p><strong>나. 소재 트렌드:</strong> '슬로우 디자인' 트렌드에 따라 오래 사용할 수 있는 내구성이 좋은 자재(강마루, 포세린 타일)가 인기를 끌고 있습니다. <strong>38평 인테리어</strong> 시 바닥재 선택은 전체 분위기를 좌우하므로, <strong>인테리어 견적</strong> 시 바닥재 등급별 <strong>차이점</strong>을 꼼꼼히 비교해야 합니다.</p>
+            <p><strong>다. 공간 활용 트렌드:</strong> 38평 아파트에서는 펜트리 공간을 활용한 수납 강화가 중요합니다. <strong>38평 인테리어</strong> 시 현관 팬트리나 주방 팬트리를 구성하여 넉넉한 수납공간을 확보하는 것이 <strong>장점</strong>입니다.</p>
+        </section>
+
+        <!-- Section 7: External Links and Resources (Dwell Time and Credibility) -->
+        <section id="external-links">
+            <h2>인테리어 관련 정부 지원 정책 및 신뢰할 수 있는 정보 출처</h2>
+            <p><strong>인테리어</strong> 시공에 대한 신뢰성 있는 정보와 정부 지원 정책을 확인하는 것은 중요합니다. 특히 <strong>38평 인테리어</strong>와 같이 고비용 프로젝트를 진행할 때는 다음의 공신력 있는 기관의 정보를 활용하시기 바랍니다.</p>
+            <ul>
+                <li><strong>국토교통부 (Ministry of Land, Infrastructure and Transport):</strong> 주택 개보수 관련 정책이나 건축 관련 법규 등을 확인할 수 있습니다. 주택 관리 및 안전 기준에 대한 정보를 얻을 수 있습니다. <a href="https://www.molit.go.kr" target="_blank">국토교통부 공식 웹사이트</a></li>
+                <li><strong>LH 한국토지주택공사 (Korea Land and Housing Corporation):</strong> 주거 복지 사업이나 공공 주택 관련 정보를 제공합니다. <a href="https://www.lh.or.kr" target="_blank">LH 공식 웹사이트</a></li>
+                <li><strong>인테리어 관련 정부 지원 사업 (소상공인):</strong> 소상공인 실내 보수 지원 사업 등 정부에서 제공하는 지원금을 확인하여 <strong>인테리어 비용</strong> 부담을 줄일 수 있습니다. <a href="https://www.g4b.go.kr" target="_blank">기업마당 (중소벤처기업부)</a></li>
+                <li><strong>인테리어 견적 비교 플랫폼 (숨고, 오늘의집 등):</strong> <strong>인테리어 견적 비교</strong> 시 다양한 업체의 <strong>후기</strong>를 확인하고, <strong>인테리어 비용</strong>의 <strong>평균 금액</strong>을 파악할 수 있는 유용한 플랫폼입니다. <a href="https://www.soomgo.com/estimates/new/home-interior" target="_blank">숨고 인테리어 견적</a></li>
+                <li><strong>KCC, LG하우시스 등 자재 브랜드 공식 홈페이지:</strong> 샷시, 마루, 도배지 등 자재별 상세 정보와 <strong>가격 차이점</strong>을 파악하는 데 유용합니다. <a href="https://www.lxhausys.co.kr" target="_blank">LX하우시스</a></li>
+            </ul>
+        </section>
+
+        <!-- Section 8: Reviews and Testimonials -->
+        <section id="reviews">
+            <h2>고객 후기: 38평 인테리어, 내돈내산 성공 사례</h2>
+            <p>수많은 <strong>38평 인테리어 후기</strong>를 참고하면 성공적인 시공을 위한 팁을 얻을 수 있습니다. 다음은 저희 업체와 함께한 고객님들의 <strong>내돈내산</strong> 리모델링 성공 사례입니다.</p>
+            <div class="testimonial-container">
+                <blockquote class="testimonial">
+                    <p>"<strong>38평 구축 아파트</strong>를 리모델링했습니다. <strong>인테리어 비용</strong>이 부담되었지만, 꼼꼼하게 <strong>견적 비교</strong>를 해주셔서 <strong>가성비</strong> 있는 선택을 할 수 있었습니다. 특히 단열 공사를 완벽하게 해 주신 덕분에 겨울을 따뜻하게 보낼 수 있었습니다. <strong>서울 강남 인테리어</strong> 업체 중 최고라고 생각합니다."</p>
+                    <cite>- 서울시 강남구 고객님</cite>
+                </blockquote>
+                <blockquote class="testimonial">
+                    <p>"<strong>38평 신축 아파트 입주 인테리어</strong>를 진행했습니다. <strong>38평 인테리어</strong>의 <strong>장점</strong>인 넓은 거실을 활용하여 LDK 구조로 변경했어요. 주방과 다이닝 공간을 연결하여 가족 간의 소통이 활발해졌습니다. <strong>인테리어 추천</strong>합니다."</p>
+                    <cite>- 경기 용인시 수지구 고객님</cite>
+                </blockquote>
+                <blockquote class="testimonial">
+                    <p>"<strong>38평 인테리어 비용</strong>을 절약하기 위해 <strong>반셀프 인테리어</strong>를 고려했지만, 전문가의 조언을 받아 <strong>가성비 시공</strong>으로 결정했습니다. 샷시 교체만 전문가에게 맡기고, 나머지는 <strong>도배장판</strong>과 조명으로 해결했습니다. <strong>38평 인테리어 저렴한곳</strong>을 찾는 분들에게 좋은 <strong>후기</strong>가 될 것 같습니다."</p>
+                    <cite>- 인천시 연수구 고객님</cite>
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- Section 9: FAQs -->
+        <section id="faqs">
+            <h2>자주 묻는 질문 (FAQ)</h2>
+            <dl>
+                <dt tabindex="0" aria-expanded="false">Q1. 38평 인테리어 공사 기간은 얼마나 걸리나요?</dt>
+                <dd><strong>38평 인테리어</strong> 공사 기간은 시공 범위에 따라 크게 달라집니다. <strong>38평 전체 리모델링</strong>(샷시, 욕실, 주방 포함)의 경우 일반적으로 4주(20영업일)에서 6주 정도 소요됩니다. <strong>부분 인테리어</strong>(도배, 장판, 조명)는 1~2주 내에 완료될 수 있습니다. <strong>구축 아파트 인테리어</strong>는 철거 및 설비 공정이 추가되어 신축보다 시간이 더 걸립니다.</dd>
+                <dt tabindex="0" aria-expanded="false">Q2. 38평 아파트 인테리어 견적 비교 시 주의할 점은 무엇인가요?</dt>
+                <dd><strong>38평 인테리어 비용</strong> 견적서를 비교할 때는 <strong>가격 차이점</strong>을 파악하는 것이 중요합니다. 단순히 총액이 저렴하다고 좋은 업체는 아닙니다. 견적 항목에 '자재비', '인건비', '폐기물 처리비'가 명확하게 분리되어 있는지 확인해야 합니다. 또한, 사용되는 자재의 브랜드와 등급을 명시하여 비교해야 합니다. <strong>38평 인테리어 저렴한곳</strong>을 선택할 경우, 자재의 품질이 낮거나 추후 A/S가 불가능한 경우가 많으니 신뢰도를 확인하세요.</dd>
+                <dt tabindex="0" aria-expanded="false">Q3. 38평 구축 아파트 인테리어 시 단열 공사는 필수인가요?</dt>
+                <dd>네, <strong>38평 구축 아파트 인테리어</strong>의 경우 단열 공사는 필수적입니다. 특히 20년 이상 노후된 아파트는 외벽 단열 성능이 떨어져 결로 현상이나 곰팡이가 발생하기 쉽습니다. 샷시 교체와 함께 내벽 단열 보강을 진행하면 <strong>인테리어 비용</strong>은 증가하지만, 장기적으로 난방비 절약이라는 큰 <strong>장점</strong>이 있습니다.</dd>
+                <dt tabindex="0" aria-expanded="false">Q4. 인테리어 시공 중 추가 비용 발생을 막는 방법이 있나요?</dt>
+                <dd>추가 비용을 최소화하기 위해서는 시공 전 꼼꼼한 사전 협의가 중요합니다. 철거 후 예상치 못한 변수(배관 파손, 목공 시공 범위 변경 등)가 발생할 수 있으므로, 초기 견적서에 이러한 상황에 대한 대처 방안을 미리 명시하는 것이 좋습니다. <strong>38평 인테리어 견적 비교</strong> 시, '추가 비용 발생 기준'에 대해 명확하게 문의해야 합니다.</dd>
+            </dl>
+        </section>
+
+        <!-- Section 10: Contact -->
+        <section id="contact">
+            <h2>38평 인테리어 전문 견적 문의 및 상담 신청</h2>
+            <p><strong>38평 인테리어</strong>는 복잡하고 어려운 과정일 수 있습니다. <strong>2026년 인테리어 트렌드</strong>를 반영하여 <strong>가성비</strong> 높은 <strong>38평 인테리어 비용</strong>을 원하신다면 전문가와 상담하세요. <strong>인테리어 견적 비교</strong>부터 시공, 사후관리까지 모든 과정을 꼼꼼하게 도와드립니다. 아래 양식을 작성해 주시면 담당자가 신속하게 연락드리겠습니다.</p>
+            <form id="contact-form" action="submit_contact.php" method="POST">
+                <div class="form-group">
+                    <label for="name">이름:</label>
+                    <input type="text" id="name" name="name" required placeholder="예: 홍길동">
+                </div>
+                <div class="form-group">
+                    <label for="phone">연락처:</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="예: 010-1234-5678">
+                </div>
+                <div class="form-group">
+                    <label for="aptname">아파트/주택명:</label>
+                    <input type="text" id="aptname" name="aptname" required placeholder="예: 강남 래미안 38평형">
+                </div>
+                <div class="form-group">
+                    <label for="location">희망 지역 (시/구):</label>
+                    <input type="text" id="location" name="location" required placeholder="예: 서울시 강남구">
+                </div>
+                <div class="form-group">
+                    <label for="message">상담 내용 (구축/신축, 시공 범위 등):</label>
+                    <textarea id="message" name="message" rows="5" placeholder="구체적인 내용을 남겨주시면 정확한 상담에 도움이 됩니다. (예: 38평 구축 아파트, 전체 리모델링 희망, 예산 7천만원)"></textarea>
+                </div>
+                <button type="submit" class="cta-button">상담 신청하기</button>
+            </form>
+        </section>
+
     </main>
-  </body>
-</html>
+
+    <script>
+        // FAQ 아코디언 기능 (접기/펼치기)
+        document.querySelectorAll('dl dt').forEach((dt) => {
+            dt.addEventListener('click', () => {
+                const isActive = dt.classList.contains('active');
+                dt.classList.toggle('active');
+                dt.setAttribute('aria-expanded', !isActive);
+            });
+            dt.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    dt.click();
+                }
+            });
+        });
+
+        // Simple Estimate Calculator Function (for Dwell Time Enhancement)
+        function calculateEstimate() {
+            const area = parseInt(document.getElementById('area').value);
+            const level = document.getElementById('level').value;
+            const scopeCheckboxes = document.querySelectorAll('#calc-form input[name="scope"]:checked');
+            let baseCostPerPyeong = 100; // Economy/Basic base cost in millions (100만원)
+
+            // Adjust base cost based on selected level
+            if (level === 'premium') {
+                baseCostPerPyeong = 200; // Premium level starts higher (200만원)
+            } else if (level === 'standard') {
+                baseCostPerPyeong = 150; // Standard level base (150만원)
+            }
+
+            // Adjust cost based on selected scope items (adding complexity for more accurate simulation)
+            let complexityFactor = 1.0;
+            scopeCheckboxes.forEach(checkbox => {
+                if (checkbox.value === 'kitchen' || checkbox.value === 'bathroom') {
+                    complexityFactor += 0.2; // Increase complexity for high-cost areas
+                } else if (checkbox.value === 'window' || checkbox.value === 'extension') {
+                    complexityFactor += 0.3; // Significant increase for structural changes/windows
+                } else if (checkbox.value === 'door' || checkbox.value === 'lighting') {
+                    complexityFactor += 0.05; // Minor increase for small items
+                }
+            });
+
+            // Calculate estimated total (simulated)
+            const estimatedCost = Math.round(area * baseCostPerPyeong * complexityFactor * 10) / 10; // Simple simulation calculation
+
+            document.getElementById('estimate-result').innerHTML = `<strong>예상 견적: ${estimatedCost.toLocaleString()}만원 ~ ${Math.round(estimatedCost * 1.2).toLocaleString()}만원</strong><br><small>자세한 내용은 상담 신청 시 확인 가능합니다.</small>`;
+        }
+    </script>
+
+  
